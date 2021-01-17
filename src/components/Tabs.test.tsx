@@ -1,6 +1,6 @@
 import React from "react";
+import { HashRouter } from "react-router-dom";
 import { render, act, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import Tabs from "./Tabs";
 import Tab from "./Tab";
@@ -8,11 +8,13 @@ import Tab from "./Tab";
 describe("Tabs", () => {
   test("Renders tab component", () => {
     const { container } = render(
-      <Tabs name="testname">
-        <Tab label="testlabel">
-          <div>Test tab content</div>
-        </Tab>
-      </Tabs>
+      <HashRouter>
+        <Tabs name="testname">
+          <Tab label="testlabel">
+            <div>Test tab content</div>
+          </Tab>
+        </Tabs>
+      </HashRouter>
     );
     const tabContainer = container.querySelector(".tab-container");
     expect(tabContainer).toBeDefined();
@@ -20,11 +22,13 @@ describe("Tabs", () => {
 
   test("Renders tab component with correct roles", () => {
     const { container } = render(
-      <Tabs name="testname">
-        <Tab label="testlabel">
-          <div>Test tab content</div>
-        </Tab>
-      </Tabs>
+      <HashRouter>
+        <Tabs name="testname">
+          <Tab label="testlabel">
+            <div>Test tab content</div>
+          </Tab>
+        </Tabs>
+      </HashRouter>
     );
     const tablist = container.querySelector('.tab-container [role="tablist"]');
     const tab = container.querySelector('.tab-container [role="tab"]');
@@ -38,11 +42,13 @@ describe("Tabs", () => {
 
   test("Renders tab content inside tab panel", () => {
     const { container } = render(
-      <Tabs name="testname">
-        <Tab label="testlabel">
-          <div>Content</div>
-        </Tab>
-      </Tabs>
+      <HashRouter>
+        <Tabs name="testname">
+          <Tab label="testlabel">
+            <div>Content</div>
+          </Tab>
+        </Tabs>
+      </HashRouter>
     );
 
     const tabpanel = container.querySelector(
@@ -53,14 +59,16 @@ describe("Tabs", () => {
 
   test("Should focus the tab item and show respective content on tab click", () => {
     const { container } = render(
-      <Tabs name="testname">
-        <Tab label="testlabel1">
-          <div>Content1</div>
-        </Tab>
-        <Tab label="testlabel2">
-          <div>Content2</div>
-        </Tab>
-      </Tabs>
+      <HashRouter>
+        <Tabs name="testname">
+          <Tab label="testlabel1">
+            <div>Content1</div>
+          </Tab>
+          <Tab label="testlabel2">
+            <div>Content2</div>
+          </Tab>
+        </Tabs>
+      </HashRouter>
     );
     const tabs = container.querySelectorAll("[role=tab]");
     const tabContents = container.querySelectorAll("[role=tabpanel]");
@@ -75,6 +83,7 @@ describe("Tabs", () => {
 
 describe("Tabs - Accessiblity - Keyboard", () => {
   const componentMarkup = (
+    <HashRouter>
     <Tabs name="testname">
       <Tab label="testlabel1">
         <div>Content1</div>
@@ -83,6 +92,7 @@ describe("Tabs - Accessiblity - Keyboard", () => {
         <div>Content2</div>
       </Tab>
     </Tabs>
+    /</HashRouter>
   );
   test("Should focus to previous tab on Left Arrow key", () => {
     const { container } = render(componentMarkup);
@@ -146,18 +156,5 @@ describe("Tabs - Accessiblity - Keyboard", () => {
 
     expect(tabs[1].getAttribute("aria-selected")).toEqual("true");
     expect(tabs[0].getAttribute("aria-selected")).toEqual("false");
-  });
-
-  test("Should focus tab content on Tab key press if tab is on focussed state", () => {
-    const { container } = render(componentMarkup);
-    const tabs = container.querySelectorAll("[role=tab]");
-    const tabPanels = container.querySelectorAll("[role=tabpanel]");
-
-    act(() => {
-      userEvent.click(tabs[0])
-      userEvent.tab();
-    });
-
-    expect(tabPanels[0]).toHaveFocus();
   });
 });

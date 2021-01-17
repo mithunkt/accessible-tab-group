@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useHistory } from "react-router-dom";
+import TabPanel from "./TabPanel";
 import "./Tabs.css";
 
 interface ITabs {
@@ -7,19 +9,29 @@ interface ITabs {
 }
 
 const Tabs = ({ name, children }: ITabs) => {
-  const hash = window.location.hash;
-  const hashName = hash.match(/[a-zA-Z]+/g)?.join();
-  let initIndex = 0;
-
-  if (hash !== "" && hashName === name) {
-    const hashIndex = parseInt(hash.replace(/^\D+/g, ""));
-    if(!isNaN(hashIndex) && hashIndex < React.Children.count(children)) {
-      initIndex = hashIndex
-    }
-  }
-
-  const [selectedIndex, setSelectedIndex] = useState(initIndex);
+  const location = useLocation();
+  let history = useHistory();
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const tabList: HTMLAnchorElement[] = [];
+
+  const getTabName = (hashName: string) => hashName.match(/[a-zA-Z]+/g)?.join();
+
+  const getTabIndex = (hashName: string) =>
+    parseInt(hashName.replace(/^\D+/g, ""));
+
+  useEffect(() => {
+    const urlTabName = getTabName(location.pathname);
+    if (urlTabName && urlTabName === name) {
+      const urlTabIndex = getTabIndex(location.pathname);
+      if (
+        !isNaN(urlTabIndex) &&
+        urlTabIndex < React.Children.count(children) &&
+        urlTabIndex !== selectedIndex
+      ) {
+        setSelectedIndex(urlTabIndex);
+      }
+    }
+  }, [location, children, name, selectedIndex]);
 
   const handleClick = (event: React.MouseEvent, index: number) => {
     setSelectedIndex(index);
@@ -48,6 +60,7 @@ const Tabs = ({ name, children }: ITabs) => {
       setSelectedIndex(newIndex);
       if (tabList[newIndex]) {
         tabList[newIndex].focus();
+        history.push(`/${name}-${newIndex}`);
       }
     }
   };
@@ -70,22 +83,16 @@ const Tabs = ({ name, children }: ITabs) => {
     return newTab;
   });
 
-  const renderTabContent = React.Children.map(children, (tab, index) => (
-    <div
-      id={`${name}-${index}-tab`}
-      tabIndex={0}
-      role="tabpanel"
-      aria-labelledby={`${name}-${index}`}
-      hidden={index !== selectedIndex}
-    >
+  const renderTabPanels = React.Children.map(children, (tab, index) => (
+    <TabPanel controlName={`${name}-${index}`} hidden={index !== selectedIndex}>
       {tab.props.children}
-    </div>
+    </TabPanel>
   ));
 
   return (
     <div className="tab-container">
       <ul role="tablist">{renderTabsWithProps}</ul>
-      {renderTabContent}
+      {renderTabPanels}
     </div>
   );
 };

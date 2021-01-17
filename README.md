@@ -2,7 +2,7 @@
 
 Accessible tab group with WAI ARIA specification. Implementation is with the horizontal orientation and automatic activation.
 
-Tab state is persisted with hash value in URL. 
+Tab state is persisted with hash value in URL. Hash URL follows the name `{TABGROUP_NAME}-{TABINDEX}`.Eg: `#Animals-1`.
 
 Tech Stacks: `React`, `Typescript`
 
@@ -40,7 +40,7 @@ npm run test
 * Handling vertical orientation for tablists.
 * `Delete` keyboard interaction for the tab.
 * Keyboard interaction with Modal popup associated with tab group.
-* State persistence with keyboard interaction.
+* State persitence with routing can be improved.
 
 ### Accessibility Tests
 <img src="./accessiblity-axe-img.PNG" >
