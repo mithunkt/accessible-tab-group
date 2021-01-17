@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/accessible-tab-group/static/css/main.0fc6af4c.chunk.css",
+    "main.js": "/accessible-tab-group/static/js/main.28603f6f.chunk.js",
+    "main.js.map": "/accessible-tab-group/static/js/main.28603f6f.chunk.js.map",
+    "runtime-main.js": "/accessible-tab-group/static/js/runtime-main.a7ca1c4c.js",
+    "runtime-main.js.map": "/accessible-tab-group/static/js/runtime-main.a7ca1c4c.js.map",
+    "static/js/2.6bed0c85.chunk.js": "/accessible-tab-group/static/js/2.6bed0c85.chunk.js",
+    "static/js/2.6bed0c85.chunk.js.map": "/accessible-tab-group/static/js/2.6bed0c85.chunk.js.map",
+    "static/js/3.b7845224.chunk.js": "/accessible-tab-group/static/js/3.b7845224.chunk.js",
+    "static/js/3.b7845224.chunk.js.map": "/accessible-tab-group/static/js/3.b7845224.chunk.js.map",
+    "index.html": "/accessible-tab-group/index.html",
+    "static/css/main.0fc6af4c.chunk.css.map": "/accessible-tab-group/static/css/main.0fc6af4c.chunk.css.map",
+    "static/js/2.6bed0c85.chunk.js.LICENSE.txt": "/accessible-tab-group/static/js/2.6bed0c85.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a7ca1c4c.js",
+    "static/js/2.6bed0c85.chunk.js",
+    "static/css/main.0fc6af4c.chunk.css",
+    "static/js/main.28603f6f.chunk.js"
+  ]
+}
