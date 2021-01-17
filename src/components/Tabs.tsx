@@ -21,11 +21,11 @@ const Tabs = ({ name, children }: ITabs) => {
   const [selectedIndex, setSelectedIndex] = useState(initIndex);
   const tabList: HTMLAnchorElement[] = [];
 
-  const handleClick = (event: any, index: number) => {
+  const handleClick = (event: React.MouseEvent, index: number) => {
     setSelectedIndex(index);
   };
 
-  const handleKeyDown = (event: any, index: number) => {
+  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
     let newIndex;
     const tabCount = React.Children.count(children);
     switch (event.key) {

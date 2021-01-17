@@ -9,8 +9,8 @@ interface ITab {
   tabIndex?: number;
   tabName?: string;
   tabRef?: () => {};
-  handleClick?: (event: any, index: number) => {};
-  handleKeyDown?: (event: any, index: number) => {};
+  handleClick?: (event: React.MouseEvent<HTMLAnchorElement>, index: number) => {};
+  handleKeyDown?: (event: React.KeyboardEvent<HTMLAnchorElement>, index: number) => {};
 }
 
 const Tab = ({
