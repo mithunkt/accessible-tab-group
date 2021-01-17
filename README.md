@@ -6,6 +6,8 @@ Tab state is persisted with hash value in URL.
 
 Tech Stacks: `React`, `Typescript`
 
+App is live at https://mithunkt.github.io/accessible-tab-group/
+
 ### How to setup
 
 Install dependencies
@@ -35,6 +37,11 @@ npm run test
 
 ## Possible Enhancements
 
-* Handling vertical orientation for tablists
-* `Delete` keyboard interaction for the tab
+* Handling vertical orientation for tablists.
+* `Delete` keyboard interaction for the tab.
 * Keyboard interaction with Modal popup associated with tab group.
+* State persistence with keyboard interaction.
+
+### Accessibility Tests
+<img src="./accessiblity-axe-img.PNG" >
+<img src="./accessiblity-img.PNG" >
